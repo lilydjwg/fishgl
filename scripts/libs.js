@@ -2757,7 +2757,6 @@ function() {
         return C
     }) : window.tinycolor = C
 }(),
-/*Xiaosong    
 function() {
     var a = function(a, b, c) {
         var d = !1
@@ -2886,7 +2885,6 @@ function() {
     ;
     window.waveMaker = a
 }(),
-Xiaosong*/    
 void 0 === Date.now && (Date.now = function() {
     return (new Date).valueOf()
 }

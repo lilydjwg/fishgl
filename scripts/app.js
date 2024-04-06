@@ -1335,8 +1335,8 @@
                     for (var b in this.glassMaterials)
                         this.glassMaterials[b].uniforms && (this.glassMaterials[b].uniforms.map2Opacity.value = a);
                     c.Main.effect.uniforms.amt.value = a,
-                    c.Main.fishLight.shadowDarkness = a//,
-                    //c.AdvancedPanel.updateGroup(c.Main.groups.AQUARIUMFILTER)
+                    c.Main.fishLight.shadowDarkness = a,
+                    c.AdvancedPanel.updateGroup(c.Main.groups.AQUARIUMFILTER)
                 }
             },
             get AlgaeOpacity() {
@@ -1356,8 +1356,8 @@
                     c.Main.effect.uniforms.amt.value = a,
                     c.Main.fishLight.shadowDarkness = a;
                     var d = a / .5;
-                    c.Main.particles.Scale = Math.max(.1, .8 - .8 * d) //,
-                    //c.AdvancedPanel.updateGroup(c.Main.groups.AQUARIUMFILTER)
+                    c.Main.particles.Scale = Math.max(.1, .8 - .8 * d),
+                    c.AdvancedPanel.updateGroup(c.Main.groups.AQUARIUMFILTER)
                 }
             },
             get CleanLevel() {
@@ -2345,7 +2345,6 @@
             this.zoomDelta = this.zoomDelta < .01 && this.zoomDelta > -.01 ? 0 : this.zoomDelta) : this.camera.position.z = -this.distance
         }
     },
-    /* Xiaosong
     c.AdvancedPanel = {
         init: function() {
             this.groups = {},
@@ -2541,7 +2540,6 @@
                 this.$scrollthumb.css("opacity", 0)
         }
     },
-        Xiaosong */
     function() {
         function a(a) {}
         var b = window.ga || $.noop;
@@ -2753,7 +2751,6 @@
             return !this.$.hasClass("closed")
         }
     }(),
-    /*Xiaosong
     c.LoadingUI = function(a) {
         this.bubbles(),
         this.waveMaker = new window.waveMaker("loading-waves",252,24),
@@ -2777,8 +2774,8 @@
         $("#loading").delay(1e3).fadeOut(1e3, $.proxy(function() {
             clearInterval(this.bubbleInterval),
             $(".loading-bubble").remove(),
-            this.waveMaker.stop(),
-            window.ieFlyout.init()
+            this.waveMaker.stop() //,
+            // window.ieFlyout.init()
         }, this))
     }
     ,
@@ -2871,7 +2868,6 @@
             }
         }
     },
-Xiaosong*/
     function() {
         var a = !1;
         try {
@@ -3428,7 +3424,7 @@ Xiaosong*/
                 this.maxTranslation.x = this.origin.x + .5 * this.fishManager.tWidth,
                 this.maxTranslation.y = this.origin.y + .5 * this.fishManager.tHeight,
                 this.maxTranslation.z = this.origin.z + .5 * this.fishManager.tDepth,
-                //Xiaosong this.loadingUI = new c.LoadingUI(this.assetManager),
+                this.loadingUI = new c.LoadingUI(this.assetManager),
                 this.assetManager.addEventListener(c.AssetManager.LOAD_COMPLETE, $.proxy(this.handleAssetManagerLoadComplete, this)),
                 this.renderer = new THREE.WebGLRenderer({
                     antialias: !1,
@@ -3492,8 +3488,8 @@ Xiaosong*/
                 this.createRipple(f[0]),
                 a.setTimeout($.proxy(this.createRipple, this), 250, f[0])) : c.fishManager.feedFish())),
                 f = e.intersectObject(this.fishScene.lightSwitch),
-                f.length > 0 && (this.LightIsOn = !this.LightIsOn /*,
-                Xiaosong c.AdvancedPanel.updateGroup(this.groups.LIGHTS)*/),
+                f.length > 0 && (this.LightIsOn = !this.LightIsOn,
+                c.AdvancedPanel.updateGroup(this.groups.LIGHTS)),
                 this.isInTank && (f = e.intersectObject(this.fishScene.chestBase),
                 f.length > 0 && (c.sounds.play("BubblesNemo", 10),
                 this.chestTaps = 0))
@@ -3559,9 +3555,8 @@ Xiaosong*/
                 this.oceanWater.mesh.scale.x = 79,
                 this.oceanWater.mesh.scale.y = 160,
                 this.oceanWater.mesh.rotateOnAxis(b.axisX, -90 * b.toRADIANS));
-                //var f = c.AdvancedPanel;
+                var f = c.AdvancedPanel;
                 this.soundManager.init(),
-                /*
                 f.addSectionName(this.groups.LIGHTS, "Tank Light"),
                 f.addBool({
                     group: this.groups.LIGHTS,
@@ -3808,7 +3803,6 @@ Xiaosong*/
                     valueName: "DoDistortion",
                     updateId: "doDistortionBool"
                 }),
-                */
                 this.fishScene.useTempMat || (this.fishScene.gravel.material.uniforms.normalScale.value = new THREE.Vector2(-.65,-.65)),
                 this.particles.RenderDepth = 1,
                 this.particles.AntiAlias = !0,
@@ -3819,7 +3813,7 @@ Xiaosong*/
                 this.setComplexity(c.ComplexityLevel.MEDIUM),
                 this.fishManager.TotalFish = c.INITIAL_FISH,
                 this.LightIsOn = !0,
-                //c.AdvancedPanel.updateGroup(this.groups.LIGHTS),
+                c.AdvancedPanel.updateGroup(this.groups.LIGHTS),
                 c.arm && (this.scene.add(this.fishScene.tank),
                 this.scene.remove(this.fishScene.tankInner)),
                 this.animate(),
@@ -3866,8 +3860,8 @@ Xiaosong*/
                 this.bubbles_3.startEmitter()) : c.arm || (this.bubbles_0.stopEmitter(),
                 this.bubbles_1.stopEmitter(),
                 this.bubbles_2.stopEmitter(),
-                this.bubbles_3.stopEmitter()) //,
-                //c.AdvancedPanel.updateGroup(c.Main.groups.BUBBLES)
+                this.bubbles_3.stopEmitter()),
+                c.AdvancedPanel.updateGroup(c.Main.groups.BUBBLES)
             },
             get BubblesOn() {
                 return this.bubblesOn
@@ -3875,8 +3869,8 @@ Xiaosong*/
             set FOV(a) {
                 this.isInTank || (a = 60),
                 this.camera.fov = a,
-                this.camera.updateProjectionMatrix() //,
-                //c.AdvancedPanel.updateGroup(c.Main.groups.INTANK)
+                this.camera.updateProjectionMatrix(),
+                c.AdvancedPanel.updateGroup(c.Main.groups.INTANK)
             },
             get FOV() {
                 return this.camera.fov
@@ -3909,8 +3903,8 @@ Xiaosong*/
             set ShadowsOn(a) {
                 this.shadowsOn = a,
                 this.setShadows(a),
-                a ? this.fishLight.shadowDarkness = .75 : this.fishLight.shadowDarkness = 0 //,
-                //c.AdvancedPanel.updateGroup(this.groups.GLASS)
+                a ? this.fishLight.shadowDarkness = .75 : this.fishLight.shadowDarkness = 0 ,
+                c.AdvancedPanel.updateGroup(this.groups.GLASS)
             },
             get ShadowsOn() {
                 return this.shadowsOn
@@ -3955,8 +3949,8 @@ Xiaosong*/
                     a = this.assetManager.getObjectByName("waterOff").texture,
                     a.wrapS = a.wrapT = THREE.RepeatWrapping,
                     this.tankWater.uniforms.baseTexture.value = a,
-                    this.pointLight.intensity = .01) //,
-                    //c.AdvancedPanel.updateGroup(this.groups.LIGHTS)
+                    this.pointLight.intensity = .01),
+                    c.AdvancedPanel.updateGroup(this.groups.LIGHTS)
                 }
             },
             isInTank: !1,
@@ -4064,7 +4058,7 @@ Xiaosong*/
                 a.requestAnimationFrame(this.animate.bind(this)),
                 this.controller.update(this.mouseHandler.isDragging),
                 this.render()
-                //c.perfStats.update()
+                c.perfStats.update()
             },
             cM4: new THREE.Matrix4,
             dir: new THREE.Vector3(0,0,-1),
@@ -4183,8 +4177,8 @@ Xiaosong*/
             c.INITIAL_FISH = c.arm === !0 ? 5 : 20,
             c.world = new c.FishbowlWorld,
             c.world.Init();
-            //var b = c.AdvancedPanel;
-            //b.init();
+            var b = c.AdvancedPanel;
+            b.init();
             var d = c.Controls;
             d.init()
         })
